@@ -5,15 +5,12 @@ function getRandomNumber(min, max) {
       resolve(random)
     }, 1000);
   })
-  console.log(promise);
   return promise;
 }
 
 function printNumber(num) {
   console.log(num);
 }
-
-getRandomNumber(1, 10).then(data => {
-  printNumber(data)
-})
-// getRandomNumber(1, 10).then(printNumber)
+// * then() bir parametreli bir function bekler ve promise'den done degeri o functiona yollayip calistirir
+// * Functional programming de kulanilir.
+getRandomNumber(1, 10).then(printNumber)
