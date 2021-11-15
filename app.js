@@ -1,20 +1,25 @@
 // single thread - tek garson
 // multi thread - birden fazla garson
 console.log('Before');
-getUser(1, (err, user) => {
+getUser(2, getRepos)
+function displayRepos(err, repos) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(repos);
+  }
+}
+
+function getRepos(err, user) {
   if (err) {
     console.error(err);
   } else {
     console.log('fetched user');
-    getRepositories(user.gitHubUsername, (err, repos) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(repos);
-      }
-    })
+    getRepositories(user.gitHubUsername, displayRepos)
   }
-})
+}
+
+
 
 console.log('After');
 
@@ -34,7 +39,7 @@ function getUser(id, callback) {
 function getRepositories(gitHubUsername, callback) {
   setTimeout(() => {
     console.log('Calling Github API...');
-    console.log(gitHubUsername);
+    // console.log(gitHubUsername);
     const data = [
       { username: 'codersait', repos: ['repo1', 'repo2'] },
       { username: 'yaman', repos: ['repo3', 'repo4'] },
